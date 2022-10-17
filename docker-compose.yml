@@ -1,8 +1,8 @@
 services:
-  localsvr00:
-    image: anstest
+  ubu100:
+    image: iacplayground
     stdin_open: true
-    hostname: localsvr00
+    hostname: ubu100
     expose:
       - "22"
     networks:
@@ -10,10 +10,10 @@ services:
         ipv4_address: 172.16.238.100
         ipv6_address: 2001:3984:3989::100
     
-  localsvr01:
-    image: anstest
+  ubu101:
+    image: iacplayground
     stdin_open: true
-    hostname: localsvr01
+    hostname: ubu101
     expose:
       - "22"
     networks:
@@ -21,10 +21,10 @@ services:
         ipv4_address: 172.16.238.101
         ipv6_address: 2001:3984:3989::101
   
-  localsvr02:
-    image: anstest
+  ubu102:
+    image: iacplayground
     stdin_open: true
-    hostname: localsvr02
+    hostname: ubu102
     expose:
       - "22"
     networks:
@@ -32,10 +32,10 @@ services:
         ipv4_address: 172.16.238.102
         ipv6_address: 2001:3984:3989::102
 
-  localsvr03:
-    image: anstest
+  ubu103:
+    image: iacplayground
     stdin_open: true
-    hostname: localsvr03
+    hostname: ubu103
     expose:
       - "22"
     networks:

@@ -18,7 +18,7 @@ The first thing that we need is a docker image of Ubuntu with enough configurati
 To build the docker image, enter:
 
 ```
-sudo docker build -t iacplayground --build-arg username=ubuntu --build-arg userpwd=mypassword .
+docker build -t iacplayground --build-arg username=ubuntu --build-arg userpwd=mypassword .
 ```
 Use any *username* and *password* that you want. In this example, I used *ubuntu* for username and *mypassword* for password. These are the user credentials that you will need later to login to the Ubuntu servers created from this image.
 
@@ -27,7 +27,7 @@ Use any *username* and *password* that you want. In this example, I used *ubuntu
 Run container:
 
 ```
-sudo docker run -i -d --name iacplg1 iacplayground
+docker run -i -d --name iacplg1 iacplayground
 ```
 And, voilà!, you have a minimal ubuntu server running in a docker container.
 
