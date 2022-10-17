@@ -1,0 +1,12 @@
+---
+mycloud:
+  hosts:
+    ubu100:
+      ansible_host: 172.16.238.100
+    ubu101:
+      ansible_host: 172.16.238.101
+    ubu102:
+      ansible_host: 172.16.238.102
+    ubu103:
+      ansible_host: 172.16.238.103
+ 

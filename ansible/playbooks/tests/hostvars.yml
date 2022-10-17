@@ -1,0 +1,16 @@
+---
+# This script prints all the hostvars that are gathered during task "Gathering Facts"
+
+- hosts: mycloud
+  pre_tasks:
+    - name: Print facts
+      debug:
+        var: hostvars[inventory_hostname]['ansible_default_ipv4']
+    - name: Set a fact for this server
+      set_fact:
+        ipv4: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}" 
+  
+  tasks:
+    - name: Retrieve hostvars
+      debug:
+        var: hostvars[inventory_hostname]["ipv4"]

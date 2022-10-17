@@ -1,0 +1,12 @@
+- hosts: mycloud
+  become: yes
+  tasks:
+    - name: Update ubuntu 
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages on servers
+      apt: 
+        name: "*"
+        state: latest
+        autoremove: yes
