@@ -4,7 +4,8 @@ ARG username=ubuntu
 ARG userpwd=password123
 ARG publickeypath=./publickey.pub
 
-RUN apt update; apt install openssh-server -y; useradd -p $(echo $userpwd | openssl passwd -1 -stdin) -m $username -s /bin/bash;  mkdir /var/run/sshd 
+# iproute2 is needed to create the routing table. Otherwise "ansible_default_ipv4" will be undefined
+RUN apt update; apt install -y iproute2; apt install openssh-server -y; useradd -p $(echo $userpwd | openssl passwd -1 -stdin) -m $username -s /bin/bash;  mkdir /var/run/sshd 
 COPY $publickeypath /home/$username/.ssh/authorized_keys
 COPY ./sshd_config  /etc/ssh/sshd_config
 RUN apt upgrade -y; apt install sudo; echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers; chmod -R go= /home/$username/.ssh; chown -R $username:$username /home/$username/.ssh; chmod a-x /home/$username/.ssh/authorized_keys; usermod -a -G sudo $username;

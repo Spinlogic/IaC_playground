@@ -1,4 +1,4 @@
 ---
 ansible_user: ubuntu
-ansible_password: mypassword
-ansible_private_key_file: /mnt/hgfs/vmshared/rpicloud
+ansible_password: password123
+ansible_private_key_file: /mnt/hgfs/shared/ubuntutest.pem
