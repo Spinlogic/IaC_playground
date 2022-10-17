@@ -7,13 +7,15 @@ It is loosely based on the [codespace](https://github.com/codespaces-io/codespac
 
 # First things first 
 
-The first thing needed is docker image of Ubuntu with enough configuration to be accesible from outside via ssh using encryption keys instead of user/pwd, which is the way in which real world works in practice. The provided Dockerfile is used for this.
+This repo is bulld and tested in an ubuntu desktop system, but it should work on any linux distro that supports docker. Docker installation is a pre-requisite. Follow the instructions [here](https://docs.docker.com/engine/install/) to install the latest version of docker in your machine.
+
+The first thing that we need is a docker image of Ubuntu with enough configuration to be accesible from outside via ssh using encryption keys instead of user/pwd, which is the way in which real world works in practice. The provided Dockerfile is used for this.
 
 *I won't explain here how to create encryption keys for ssh. This is well covered in this [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-22-04)), and in many other places.*
 
 ## Build and run an Ubuntu server on Docker
 
-The build the docker image, enter:
+To build the docker image, enter:
 
 ```
 sudo docker build -t iacplayground --build-arg username=ubuntu --build-arg userpwd=mypassword .
@@ -59,7 +61,10 @@ The provided *docker-compose.yml* can be used to deploy a cluster of multiple ub
 docker compose up -d
 ```
 
-Since, for [practical reasons](https://github.com/moby/moby/issues/11185), it is not possible to build an image that exposes all ports, you will need to expose the ports for each container in the docker-compose file.
+each *dockerised" ubuntu server has its own IP address and is reachable from the host machine.
+
+***NOTE:** Since, for [practical reasons](https://github.com/moby/moby/issues/11185), it is not possible to build an image that exposes all ports, you will need to expose the ports for each container in the docker-compose file.*
+
 
 # Infrastructure as Code (IaC)
 
