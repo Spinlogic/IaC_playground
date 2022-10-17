@@ -11,6 +11,9 @@ RUN chmod -R go= /home/$username/.ssh; chmod a-x /home/$username/.ssh/authorized
 
 WORKDIR /home/ubuntu
 
+# Expose ssh port
 EXPOSE 22
+# Expose all other ports needed for this project
+# EXPOSE ...
 
 ENTRYPOINT service ssh restart && bash

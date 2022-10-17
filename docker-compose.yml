@@ -1,0 +1,52 @@
+services:
+  localsvr00:
+    image: anstest
+    stdin_open: true
+    hostname: localsvr00
+    expose:
+      - "22"
+    networks:
+      ans_test:
+        ipv4_address: 172.16.238.100
+        ipv6_address: 2001:3984:3989::100
+    
+  localsvr01:
+    image: anstest
+    stdin_open: true
+    hostname: localsvr01
+    expose:
+      - "22"
+    networks:
+      ans_test:
+        ipv4_address: 172.16.238.101
+        ipv6_address: 2001:3984:3989::101
+  
+  localsvr02:
+    image: anstest
+    stdin_open: true
+    hostname: localsvr02
+    expose:
+      - "22"
+    networks:
+      ans_test:
+        ipv4_address: 172.16.238.102
+        ipv6_address: 2001:3984:3989::102
+
+  localsvr03:
+    image: anstest
+    stdin_open: true
+    hostname: localsvr03
+    expose:
+      - "22"
+    networks:
+      ans_test:
+        ipv4_address: 172.16.238.103
+        ipv6_address: 2001:3984:3989::103
+
+networks:
+  ans_test:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
+        - subnet: "2001:3984:3989::/64"

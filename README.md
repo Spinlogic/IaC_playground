@@ -51,5 +51,17 @@ where:
 - /mnt/hgfs/shared/ubuntutest.pem is the path to my private key, and
 - 172.17.0.2 is the IP address of the Docker container instantiated above. You can use *docker inspect iacplayground* to find out the IP address of your server in the network created by Docker.
 
+# Deploy a cluster
 
-**MORE TO COME SOON ...**
+The provided *docker-compose.yml* can be used to deploy a cluster of multiple ubuntu servers. You only need to enter:
+
+```
+docker compose up -d
+```
+
+Since, for [practical reasons](https://github.com/moby/moby/issues/11185), it is not possible to build an image that exposes all ports, you will need to expose the ports for each container in the docker-compose file.
+
+# Infrastructure as Code (IaC)
+
+A this point, we have cluster of multiple ubuntu servers that can be used to practice with IoC tools. We will try only with Ansible, but feel free to test other IaC tools.
+
