@@ -1,6 +1,6 @@
 ---
-# This script prints all the hostvars that are gathered during task "Gathering Facts"
-
+# This retrieves the IP address of the server from the ansible facts and stores
+# if in a new fact. 
 - hosts: mycloud
   pre_tasks:
     - name: Print facts

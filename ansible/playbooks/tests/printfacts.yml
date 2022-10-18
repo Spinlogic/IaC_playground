@@ -1,0 +1,10 @@
+---
+# Prints all facts retrieved for this server.
+# WARNING: you may need to increase the amount of lines shown in your terminal,
+# since this task outputs around 1500 lines.
+- hosts: mycloud
+  tasks:
+    - name: Print facts
+      debug:
+        var: hostvars[inventory_hostname]
+    
