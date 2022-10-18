@@ -3,6 +3,8 @@
 # WARNING: you may need to increase the amount of lines shown in your terminal,
 # since this task outputs around 1500 lines.
 - hosts: mycloud
+  # vars_files:
+  #   - secrets/secrets.yml
   tasks:
     - name: Print facts
       debug:

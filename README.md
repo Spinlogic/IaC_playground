@@ -18,7 +18,7 @@ The first thing that we need is a docker image of Ubuntu with enough configurati
 Build the docker image with:
 
 ```
-docker build -t iacplayground --build-arg username=ubuntu --build-arg userpwd=mypassword --build-arg publickeypath=./publickey.pub .
+docker build -t iacplayground --build-arg username=myusername --build-arg userpwd=mypassword --build-arg publickeypath=./publickey.pub .
 ```
 Use any *username* and *password* that you want, and the *public key* that you generated for this project.  
 
@@ -34,6 +34,8 @@ docker run -i -d --name iacplg1 iacplayground
 
 2. Connect to the container from a terminal in the host:
 
+***Note:** You will have to uncomment the "WORKDIR /home/$username", "EXPOSE 22" and "ENTRYPOINT service ssh restart && bash" lines in Dockerfile for this to work.*
+
 ```
 ssh -i /full_path_to_private_key your_username@container_ip_address
 ```
@@ -44,7 +46,7 @@ You can use *docker inspect iacplayground* to find out the *container_ip_address
 - Before building the Docker image using Dockerfile, you must create a pair of public / private encryption keys.
 - The config file for SSH is copied into the image. Modify it as needed for your case. 
 - The *username* and *password" that you defined is the sudo user that Ansible will use to execute tasks on the server. 
-- Each line in the Dockerfile creates a layer in the Docker image. I have made some optimisations to reduce the number of layers, but feel free to make more. E.g. The WORKDIR, EXPOSE and ENTRYPOINT lines can be removed (i.e. a redunction of three images), since they can be defined in the *docker-compose* file.
+- Each line in the Dockerfile creates a layer in the Docker image. I have made some optimisations to reduce the number of layers, like commenting WORKDIR, EXPOSE and ENTRYPOINT lines (i.e. a redunction of three images), since they are defined in the *docker-compose* file. Feel free to make additional optimisations.
 
 # Deploy a cluster
 
@@ -56,7 +58,7 @@ docker compose up -d
 
 *Dockerised" ubuntu servers have their own IP addresses and are all reachable among them and from the host machine. Their IP addresses are defined in the *docker-compose.yml* and will be used also in the ansible inventory.
 
-***NOTE:** Since, for [practical reasons](https://github.com/moby/moby/issues/11185), it is not possible to build an image that exposes all ports, you will need to expose the ports for each container in the docker-compose file. Just edit the docker-compose.yml as needded for your case to expose the needed port in each ubuntu server (service).*
+***NOTE:** for [practical reasons](https://github.com/moby/moby/issues/11185), it is not practical to build an image that exposes all ports. You will need to expose the ports for each container in the docker-compose file for the specific services that they provide.*
 
 
 # Infrastructure as Code (IaC)

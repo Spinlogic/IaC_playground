@@ -1,4 +1,6 @@
 - hosts: mycloud
+  # vars_files:
+  #   - secrets/secrets.yml
   become: yes
   tasks:
     - name: Update ubuntu 

@@ -1,5 +1,7 @@
 ---
 - hosts: mycloud
+  # vars_files:
+  #   - secrets/secrets.yml
   gather_facts: no
   tasks:
     - name: Ping all the machines in the cluster
